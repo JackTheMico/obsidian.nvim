@@ -288,6 +288,10 @@ config.CompletionOpts = {}
 ---@return obsidian.config.CompletionOpts
 config.CompletionOpts.default = function()
   local has_nvim_cmp, _ = pcall(require, "cmp")
+  local has_blink_cmp, _ = pcall(require, "blink.cmp")
+  if has_blink_cmp then
+    has_nvim_cmp = false
+  end
   return {
     nvim_cmp = has_nvim_cmp,
     min_chars = 2,
